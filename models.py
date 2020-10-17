@@ -3,15 +3,11 @@ import json
 from sqlalchemy import Column, String, Integer, create_engine
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
-from app import create_app
-from flask_migrate import Migrate
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite///app.db'
+database_name = "capstone"
+database_path = "postgres://{}/{}".format('localhost:5432', database_name)
 
-database_path = os.environ('DATABASE_URL')
 db = SQLAlchemy()
-migrate = Migrate(app, db)
 
 '''
 setup_db(app)
@@ -23,7 +19,6 @@ def setup_db(app, database_path=database_path):
     db.app = app
     db.init_app(app)
     db.create_all()
-    migrate = Migrate(app, db)
 
 '''
 Movies
